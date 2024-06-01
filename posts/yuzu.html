@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../style.css">
+    <title>yuzu | ravens' site</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/protobuf.min.js"></script>
+</head>
+
+<body>
+    <h1>yuzu protocol</h1>
+    <p><b>started:</b> 2024-05-31 | <b>updated:</b> 2024-05-31 | <b>status:</b> draft</p>
+
+    <hr>
+
+    <h2>what and why?</h2>
+
+    <p>lately I've been thinking: why are we locked in a corporate chat service prison? why do I gotta pay $10/month to
+        use the good
+        emojis, or $15/month per head to send corporate drivel and async standup notes?</p>
+
+    <p>we're reasonably technically savvy people. we should not be forced to pick between IRC (no, it's not coming back)
+        or other archaic services and locked down "gamer" or corpo jank.</p>
+
+    <p>so, I started sketching a peer to peer chat protocol, yuzu. my thesis is that it's possible to build a protocol
+        that:</p>
+    <ul>
+        <li>allows for permissionless network participation, with no central host or authority</li>
+        <li>supports <a href="https://www.inkandswitch.com/local-first/" target="_blank">local first semantics</a>, like
+            offline capabilities and eventually consistent data sync</li>
+        <li>provides a reasonable access control and capabilities system</li>
+    </ul>
+
+    <p>it's just a sketch for now, but maybe it'll turn into something greater?</p>
+
+    <h2>functional structure</h2>
+
+    <p>from a user perspective, yuzu behaves as follows:</p>
+
+    <ul>
+        <li><u>users</u> may join any number of <u>groups</u> (akin to "servers" in discord), which are <u>owned</u> by
+            an originating user and contain any number of <u>channels</u></li>
+        <li>users send <u>messages</u> to a channel, which are eventually delivered to all users in a group</li>
+        <li>group owners may <u>grant</u> any number of <u>capabilities</u> to users in their groups, which includes
+            <u>invites</u> to join a group and moderation abilities
+        </li>
+        <li>anyone may join the global network, granting them the ability to discover (in the network sense) and join
+            clusters of peers
+        </li>
+    </ul>
+
+    <h2>protocol sketch</h2>
+
+    <p>functionally, yuzu is based on the following primitives:</p>
+    <ul>
+        <li><a href="https://ed25519.cr.yp.to/" target="_blank">ed25519</a> key pairs for identity -
+            peers
+            identify each
+            other by public key and verify message authorship via signatures</li>
+        <li>ephemeral <a href="" target="_blank">x25519</a> key pairs for peer to peer encryption</li>
+        <li>a <a href="http://iptps03.cs.berkeley.edu/final-papers/coral.pdf" target="_blank">coral DHT</a> (also called
+            a "sloppy hash" DHT) - to provide locality efficient data (and thus peer) discovery
+        </li>
+        <li>hash graphs, also referred to as "merkle-DAGs" or <a
+                href="https://www.researchgate.net/publication/353385703_Tangle_Centric_Networking"
+                target="_blank">"tangles"</a> a la IPFS, Git, p2panda, and a million others - to construct byzantine
+            fault tolerant <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a>,
+            providing causal ordering and eventual consistency for critical data structures</li>
+        <li>a <a href="https://en.wikipedia.org/wiki/Gossip_protocol" target="_blank">gossip protocol</a>, for
+            disseminating updates across peers</li>
+    </ul>
+
+    <h3>identity</h3>
+
+    <p>identity in yuzu is straightforward if you're familiar with other p2p networks. each peer generates a long term
+        ed25519 public/private key pair. a peer is identified, both within the network and in terms of content
+        authorship, by their public key.</p>
+
+    <h3>hash graphs</h3>
+
+    <p>hash graphs are the means for providing a causal ordering over events within yuzu.</p>
+
+    <p>each entry in a hash graph has the following structure:</p>
+    <pre><code class="language-go">
+type Entry struct {
+    ID hash.Hash // sha256(EntryData, signature)
+    EntryData
+    Signature []byte // sign(sha256(EntryData), signer_private_key)
+}
+
+type EntryData struct {
+    Previous []hash.Hash
+    Sequence uint64 // per pubkey incrementing id
+    Content  []byte
+    Author   ed25519.PublicKey
+}  
+    </code></pre>
+
+    <p>note that each entry may point to multiple previous entires in the graph. entries that point to more than one
+        parent are effectively performing a merge operation.</p>
+
+    <p>ordering is defined by a deterministic topological sort over the graph, with ties broken by alphabetical sorting
+        the entry hashes.</p>
+
+    <img src="hashgraph.png" style="max-width:ch;width:100%">
+
+    <h3>group design</h3>
+
+    <p>
+        groups in yuzu
+    </p>
+
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
