@@ -22,36 +22,28 @@
 
     <h2>what and why?</h2>
 
-    <p>lately I've been thinking: why are we locked in a corporate chat service prison? why do I gotta pay $10/month to
-        use the good
-        emojis, or $15/month per head to send corporate drivel and async standup notes?</p>
-
-    <p>we're reasonably technically savvy people. we should not be forced to pick between IRC (no, it's not coming back)
-        or other archaic services and locked down "gamer" or corpo jank.</p>
-
-    <p>so, I started sketching a peer to peer chat protocol, yuzu. my thesis is that it's possible to build a protocol
+    <p>I started sketching a peer to peer chat protocol, yuzu. my thesis is that it's possible to build a protocol
         that:</p>
     <ul>
         <li>allows for permissionless network participation, with no central host or authority</li>
         <li>supports <a href="https://www.inkandswitch.com/local-first/" target="_blank">local first semantics</a>, like
-            offline capabilities and eventually consistent data sync</li>
+            offline use and eventually consistent data sync</li>
         <li>provides a reasonable access control and capabilities system</li>
     </ul>
-
-    <p>it's just a sketch for now, but maybe it'll turn into something greater?</p>
 
     <h2>functional structure</h2>
 
     <p>from a user perspective, yuzu behaves as follows:</p>
 
     <ul>
-        <li><u>users</u> may join any number of <u>groups</u> (akin to "servers" in discord), which are <u>owned</u> by
-            an originating user and contain any number of <u>channels</u></li>
+        <li><u>users</u> may join any number of <u>groups</u> (akin to "servers" in discord), which contain any number
+            of <u>channels</u></li>
         <li>users send <u>messages</u> to a channel, which are eventually delivered to all users in a group</li>
-        <li>group owners may <u>grant</u> any number of <u>capabilities</u> to users in their groups, which includes
-            <u>invites</u> to join a group and moderation abilities
+        <li>groups are <u>owned</u> by an originating user, and group owners may grant any number of
+            <u>capabilities</u> to users in their groups, which includes
+            invites to join and moderation abilities
         </li>
-        <li>anyone may join the global network, granting them the ability to discover (in the network sense) and join
+        <li>anyone may join the global network, allowing them to discover (in the network sense) and join
             clusters of peers
         </li>
     </ul>
@@ -66,7 +58,7 @@
             other by public key and verify message authorship via signatures</li>
         <li>ephemeral <a href="" target="_blank">x25519</a> key pairs for peer to peer encryption</li>
         <li>a <a href="http://iptps03.cs.berkeley.edu/final-papers/coral.pdf" target="_blank">coral DHT</a> (also called
-            a "sloppy hash" DHT) - to provide locality efficient data (and thus peer) discovery
+            a "sloppy hash" DHT) - to provide efficient (in the locality sense) data (and thus group peer) discovery
         </li>
         <li>hash graphs, also referred to as "merkle-DAGs" or <a
                 href="https://www.researchgate.net/publication/353385703_Tangle_Centric_Networking"
@@ -77,11 +69,19 @@
             disseminating updates across peers</li>
     </ul>
 
+    <img src="yuzu.png" style="max-width:ch;width:100%">
+
     <h3>identity</h3>
 
     <p>identity in yuzu is straightforward if you're familiar with other p2p networks. each peer generates a long term
         ed25519 public/private key pair. a peer is identified, both within the network and in terms of content
         authorship, by their public key.</p>
+
+    <p>when two peers connect, they generate ephemeral x25519 key pairs for encryption (signed by their ed25519 keys for
+        proof of identity). these are used in a <a
+            href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange" target="_blank">diffie-hellman
+            exchange</a>, after which a <a href="https://en.wikipedia.org/wiki/ChaCha20-Poly1305"
+            target="_blank">chacha20poly1305</a> secret is used for symmetric encryption.</p>
 
     <h3>hash graphs</h3>
 
@@ -96,15 +96,16 @@ type Entry struct {
 }
 
 type EntryData struct {
-    Previous []hash.Hash
-    Sequence uint64 // per pubkey incrementing id
-    Content  []byte
-    Author   ed25519.PublicKey
+    Previous    []hash.Hash
+    Sequence    uint64 // per pubkey incrementing id
+    Content     []byte
+    CreatedAt   uint64 // unix timestamp of entry creation
+    Author      ed25519.PublicKey
 }  
     </code></pre>
 
     <p>note that each entry may point to multiple previous entires in the graph. entries that point to more than one
-        parent are effectively performing a merge operation.</p>
+        parent are effectively performing a "merge operation" of log state within the topological ordering.</p>
 
     <p>ordering is defined by a deterministic topological sort over the graph, with ties broken by alphabetical sorting
         the entry hashes.</p>
@@ -114,8 +115,73 @@ type EntryData struct {
     <h3>group design</h3>
 
     <p>
-        groups in yuzu
+        groups in yuzu are defined by a central, per group "operation" hash graph that is permanent and used for
+        capabilities
+        management, access control, and CRUD operations over channels.
     </p>
+
+    <p>the operation graph is initialized by a user with a message as follows:</p>
+    <pre><code class="language-json">
+{
+    "type": "OPERATION_CREATE_GROUP",
+    "group_metadata": {
+        "title": "My cool group",
+        "description": "A group for my friends to chat together"
+    }
+}
+    </code></pre>
+
+    <p>an OPERATION_CREATE_GROUP operation will have no Previous entry defined. the ID (hash) of this entry will also be
+        used as the GroupID from now on, uniquely identifying each group.</p>
+
+    <p>the group owner may then create new entries in the operation graph to grant or revoke <u>capabilities</u>, create
+        <u>channels</u>, and update metadata.
+    </p>
+
+    <h3>capabilities and pseudo-finality</h3>
+
+    <p>for example, "inviting" another user to the group can be achieved via the JOIN capability.</p>
+    <pre><code class="language-json">
+{
+    "type": "OPERATION_GRANT_CAPABILITY",
+    "capability_data": {
+        "type": "JOIN",
+        "granter": "/UVrV7KeYPM18mwy6RzlOFe/khd0QRq5vGsTu/LU758=",
+        "grantee": "y2UmRYuNtib7zR4USNlTUExL2ic3RXXh70ezlEtol7E=",
+        "valid_from": 1717278799,
+        "valid_until": 1717909333
+    }
+}
+    </code></pre>
+
+    <p>note the use of <u>unix timestamps</u> for bounding the use of this operation. this is obviously not a perfect
+        solution
+        given the dynamics of peer to peer systems, as authors could attempt to use a capability that was revoked or
+        expired by manufacturing a new entry with a timestamp and causal dependency set "backwards in time". this is not
+        distinguishable from legitimate but stale messages due to network availability and offline data sync.</p>
+
+    <p>to mitigate this, we tweak the availability and consistency expectations specifically for the operation DAG,
+        where nodes define an acceptance boundary for new entires in terms of the claimed timestamp and the node's
+        current clocktime. to allow for historic sync, we also define alternative validity under "depth of attestations"
+        (previous links).</p>
+
+    <img src="finality.png" style="max-width:ch;width:100%">
+
+    <p>attestations of entry validity (that they are non-byzantine, aka received within a timely window) may be
+        explicitly entered into the DAG, but they may also be implicit via subsequent operations treating these
+        operations as a dependency (previous node).</p>
+
+    <p>while not a perfect solution, I posit that this pseudo-finality strikes a reasonable tradeoff between byzantine
+        protection, offline sync, and no required strong consensus mechanism.</p>
+
+    <p>the following parameters may be made tunable per group or per implementation:</p>
+    <ul>
+        <li>the amount a new entry's timestamp is allowed to deviate from node clock time before it's considered invalid
+            by peers</li>
+        <li>the depth of backlinks required for a previous entry with a stale timestamp to be considered valid</li>
+        <li>the number of identities attesting to the validity of a message required for it to be considered valid</li>
+        <li>the conditions under which nodes explicitly attest vs depend on implicit attestation</li>
+    </ul>
 
     <script>hljs.highlightAll();</script>
 </body>
