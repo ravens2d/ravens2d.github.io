@@ -163,13 +163,13 @@ type EntryData struct {
     <p>to mitigate this, we tweak the availability and consistency expectations specifically for the operation DAG,
         where nodes define an acceptance boundary for new entires in terms of the claimed timestamp and the node's
         current clocktime. to allow for historic sync, we also define alternative validity under "depth of attestations"
-        (previous links).</p>
+        (previous links from other peers).</p>
 
     <img src="finality.png" style="max-width:ch;width:100%">
 
     <p>attestations of entry validity (that they are non-byzantine, aka received within a timely window) may be
         explicitly entered into the DAG, but they may also be implicit via subsequent operations treating these
-        operations as a dependency (previous node).</p>
+        operations as a dependency (ancestor of one of their own entries).</p>
 
     <p>while not a perfect solution, I posit that this pseudo-finality strikes a reasonable tradeoff between byzantine
         protection, offline sync, and no required strong consensus mechanism.</p>
@@ -177,11 +177,13 @@ type EntryData struct {
     <p>the following parameters may be made tunable per group or per implementation:</p>
     <ul>
         <li>the amount a new entry's timestamp is allowed to deviate from node clock time before it's considered invalid
-            by peers</li>
-        <li>the depth of backlinks required for a previous entry with a stale timestamp to be considered valid</li>
-        <li>the number of identities attesting to the validity of a message required for it to be considered valid</li>
+            by peers, referred to as <u>skew tolerance</u></li>
+        <li>the number of identities attesting to the validity of a message required for it to be considered valid,
+            referred to as the <u>attestation threshold</u></li>
         <li>the conditions under which nodes explicitly attest vs depend on implicit attestation</li>
     </ul>
+
+    <br><br><br><br>
 
     <script>hljs.highlightAll();</script>
 </body>
