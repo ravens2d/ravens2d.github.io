@@ -20,18 +20,31 @@ h3,
 h4,
 h5 {
     font-size: inherit;
+    font-weight: normal;
+    text-transform: uppercase;
 }
 
 h1:before {
-    content: "# ";
+    content: "= ";
+}
+
+h1:after {
+    content: " =";
 }
 
 h2:before {
-    content: "## ";
+    content: "== ";
+}
+h2:after {
+    content: " ==";
 }
 
 h3:before {
-    content: "### ";
+    content: "=== ";
+}
+
+h3:after {
+    content: " ===";
 }
 
 hr:after {
