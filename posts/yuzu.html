@@ -183,6 +183,14 @@ type EntryData struct {
         <li>the conditions under which nodes explicitly attest vs depend on implicit attestation</li>
     </ul>
 
+    <p>for a flagship implementation, I propose the following:</p>
+    <ul>
+        <li>owner entries require no attestations, they are automatically assumed valid</li>
+        <li>owner always attests explicitly, other peers have a probability to attest based on the number of observed
+            live peers</li>
+        <li>owner attestations carry more weight than non-owner ones</li>
+    </ul>
+
     <br><br><br><br>
 
     <script>hljs.highlightAll();</script>

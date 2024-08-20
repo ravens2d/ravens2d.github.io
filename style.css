@@ -1,21 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 body {
-    font-family: 'Roboto', sans-serif;
-    max-width: 85ch;
+    font-family: monospace;
+    max-width: 80ch;
     margin-left: auto;
     margin-right: auto;
     padding: 1ch;
     word-break: break-word;
+    line-height: 1.25rem;
 }
 
 hr {
     border: none;
-    border-top: 1px dashed #9f9f9f;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-size: inherit;
+}
+
+h1:before {
+    content: "# ";
+}
+
+h2:before {
+    content: "## ";
+}
+
+h3:before {
+    content: "### ";
+}
+
+hr:after {
+    content: "--------------------------------------------------------------------------------";
+    display: inline-block;
+    width: 80ch;
+    overflow-x: hidden;
 }
 
 a {
-    color: #2590EB;
+    color: #2590eb;
 }
