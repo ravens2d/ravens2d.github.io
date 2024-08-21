@@ -8,6 +8,14 @@ body {
     padding: 1ch;
     word-break: break-word;
     line-height: 1.25rem;
+    font-size: 14px;
+}
+
+#ascii {
+    line-height: 14px;
+    overflow: hidden;
+    letter-spacing: unset;
+    transform: unset;
 }
 
 hr {
