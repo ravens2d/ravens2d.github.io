@@ -90,9 +90,16 @@ li {
     border-top: 1px solid #ccc;
     margin-top: 2rem;
     padding-top: 1rem;
+    padding-left: 1rem;
 }
 
 .inline-meta {
+    font-size: 0.75rem;
+    color: #666;
+    padding-left: 1rem;
+}
+
+.small-text {
     font-size: 0.75rem;
     color: #666;
 }
