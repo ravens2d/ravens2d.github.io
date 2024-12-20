@@ -70,9 +70,7 @@ li {
     top: -0.7rem;
     left: 0.5rem;
     background: #fff;
-    padding: 0 8px;
-    /* color: #666;
-    font-size: 0.9rem; */
+    padding-right: 1ch;
 }
 
 .header {
