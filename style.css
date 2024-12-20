@@ -53,6 +53,10 @@ h3::before {
     padding-right: 8px;
 }
 
+li {
+    margin: 0.75rem 0;
+}
+
 .box {
     border: 1px solid #000;
     padding: 1rem;
