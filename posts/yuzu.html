@@ -1,94 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="shortcut icon" href="../favicon.ico" />
+        <link rel="stylesheet" href="../style.css" />
+        <title>yuzu | ravens' site</title>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../style.css">
-    <title>yuzu | ravens' site</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/go.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/protobuf.min.js"></script>
+    </head>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/go.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/protobuf.min.js"></script>
-</head>
+    <body>
+        <h1>yuzu protocol</h1>
+        <div class="inline-meta">
+            STARTED: 2024-05-31 | UPDATED: 2024-06-01 | STATUS: DRAFT
+        </div>
 
-<body>
-    <h1>yuzu protocol</h1>
-    <p><b>started:</b> 2024-05-31 | <b>updated:</b> 2024-06-01 | <b>status:</b> draft</p>
+        <h2>what and why?</h2>
 
-    <hr>
+        <p>
+            I started sketching a peer to peer chat protocol, yuzu. my thesis is
+            that it's possible to build a protocol that:
+        </p>
+        <ul>
+            <li>
+                allows for permissionless network participation, with no central
+                host or authority
+            </li>
+            <li>
+                supports
+                <a
+                    href="https://www.inkandswitch.com/local-first/"
+                    target="_blank"
+                    >local first semantics</a
+                >, like offline use and eventually consistent data sync
+            </li>
+            <li>
+                provides a reasonable access control and capabilities system
+            </li>
+        </ul>
 
-    <h2>what and why?</h2>
+        <h2>functional structure</h2>
 
-    <p>I started sketching a peer to peer chat protocol, yuzu. my thesis is that it's possible to build a protocol
-        that:</p>
-    <ul>
-        <li>allows for permissionless network participation, with no central host or authority</li>
-        <li>supports <a href="https://www.inkandswitch.com/local-first/" target="_blank">local first semantics</a>, like
-            offline use and eventually consistent data sync</li>
-        <li>provides a reasonable access control and capabilities system</li>
-    </ul>
+        <p>from a user perspective, yuzu behaves as follows:</p>
 
-    <h2>functional structure</h2>
+        <ul>
+            <li>
+                <u>users</u> may join any number of <u>groups</u> (akin to
+                "servers" in discord), which contain any number of
+                <u>channels</u>
+            </li>
+            <li>
+                users send <u>messages</u> to a channel, which are eventually
+                delivered to all users in a group
+            </li>
+            <li>
+                groups are <u>owned</u> by an originating user, and group owners
+                may grant any number of <u>capabilities</u> to users in their
+                groups, which includes invites to join and moderation abilities
+            </li>
+            <li>
+                anyone may join the global network, allowing them to discover
+                (in the network sense) and join clusters of peers
+            </li>
+        </ul>
 
-    <p>from a user perspective, yuzu behaves as follows:</p>
+        <h2>protocol sketch</h2>
 
-    <ul>
-        <li><u>users</u> may join any number of <u>groups</u> (akin to "servers" in discord), which contain any number
-            of <u>channels</u></li>
-        <li>users send <u>messages</u> to a channel, which are eventually delivered to all users in a group</li>
-        <li>groups are <u>owned</u> by an originating user, and group owners may grant any number of
-            <u>capabilities</u> to users in their groups, which includes
-            invites to join and moderation abilities
-        </li>
-        <li>anyone may join the global network, allowing them to discover (in the network sense) and join
-            clusters of peers
-        </li>
-    </ul>
+        <p>functionally, yuzu is based on the following primitives:</p>
+        <ul>
+            <li>
+                <a href="https://ed25519.cr.yp.to/" target="_blank">ed25519</a>
+                key pairs for identity - peers identify each other by public key
+                and verify message authorship via signatures
+            </li>
+            <li>
+                ephemeral <a href="" target="_blank">x25519</a> key pairs for
+                peer to peer encryption
+            </li>
+            <li>
+                a
+                <a
+                    href="http://iptps03.cs.berkeley.edu/final-papers/coral.pdf"
+                    target="_blank"
+                    >coral DHT</a
+                >
+                (also called a "sloppy hash" DHT) - to provide efficient (in the
+                locality sense) data (and thus group peer) discovery
+            </li>
+            <li>
+                hash graphs, also referred to as "merkle-DAGs" or
+                <a
+                    href="https://www.researchgate.net/publication/353385703_Tangle_Centric_Networking"
+                    target="_blank"
+                    >"tangles"</a
+                >
+                a la IPFS, Git, p2panda, and a million others - to construct
+                byzantine fault tolerant
+                <a
+                    href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type"
+                    >CRDTs</a
+                >, providing causal ordering and eventual consistency for
+                critical data structures
+            </li>
+            <li>
+                a
+                <a
+                    href="https://en.wikipedia.org/wiki/Gossip_protocol"
+                    target="_blank"
+                    >gossip protocol</a
+                >, for disseminating updates across peers
+            </li>
+        </ul>
 
-    <h2>protocol sketch</h2>
+        <img src="yuzu.png" style="max-width: ch; width: 100%" />
 
-    <p>functionally, yuzu is based on the following primitives:</p>
-    <ul>
-        <li><a href="https://ed25519.cr.yp.to/" target="_blank">ed25519</a> key pairs for identity -
-            peers
-            identify each
-            other by public key and verify message authorship via signatures</li>
-        <li>ephemeral <a href="" target="_blank">x25519</a> key pairs for peer to peer encryption</li>
-        <li>a <a href="http://iptps03.cs.berkeley.edu/final-papers/coral.pdf" target="_blank">coral DHT</a> (also called
-            a "sloppy hash" DHT) - to provide efficient (in the locality sense) data (and thus group peer) discovery
-        </li>
-        <li>hash graphs, also referred to as "merkle-DAGs" or <a
-                href="https://www.researchgate.net/publication/353385703_Tangle_Centric_Networking"
-                target="_blank">"tangles"</a> a la IPFS, Git, p2panda, and a million others - to construct byzantine
-            fault tolerant <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a>,
-            providing causal ordering and eventual consistency for critical data structures</li>
-        <li>a <a href="https://en.wikipedia.org/wiki/Gossip_protocol" target="_blank">gossip protocol</a>, for
-            disseminating updates across peers</li>
-    </ul>
+        <h3>identity</h3>
 
-    <img src="yuzu.png" style="max-width:ch;width:100%">
+        <p>
+            identity in yuzu is straightforward if you're familiar with other
+            p2p networks. each peer generates a long term ed25519 public/private
+            key pair. a peer is identified, both within the network and in terms
+            of content authorship, by their public key.
+        </p>
 
-    <h3>identity</h3>
+        <p>
+            when two peers connect, they generate ephemeral x25519 key pairs for
+            encryption (signed by their ed25519 keys for proof of identity).
+            these are used in a
+            <a
+                href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange"
+                target="_blank"
+                >diffie-hellman exchange</a
+            >, after which a
+            <a
+                href="https://en.wikipedia.org/wiki/ChaCha20-Poly1305"
+                target="_blank"
+                >chacha20poly1305</a
+            >
+            secret is used for symmetric encryption.
+        </p>
 
-    <p>identity in yuzu is straightforward if you're familiar with other p2p networks. each peer generates a long term
-        ed25519 public/private key pair. a peer is identified, both within the network and in terms of content
-        authorship, by their public key.</p>
+        <h3>hash graphs</h3>
 
-    <p>when two peers connect, they generate ephemeral x25519 key pairs for encryption (signed by their ed25519 keys for
-        proof of identity). these are used in a <a
-            href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange" target="_blank">diffie-hellman
-            exchange</a>, after which a <a href="https://en.wikipedia.org/wiki/ChaCha20-Poly1305"
-            target="_blank">chacha20poly1305</a> secret is used for symmetric encryption.</p>
+        <p>
+            hash graphs are the means for providing a causal ordering over
+            events within yuzu.
+        </p>
 
-    <h3>hash graphs</h3>
-
-    <p>hash graphs are the means for providing a causal ordering over events within yuzu.</p>
-
-    <p>each entry in a hash graph has the following structure:</p>
-    <pre><code class="language-go">
+        <p>each entry in a hash graph has the following structure:</p>
+        <pre><code class="language-go">
 type Entry struct {
     ID hash.Hash // sha256(EntryData, signature)
     EntryData
@@ -101,27 +168,36 @@ type EntryData struct {
     Content     []byte
     CreatedAt   uint64 // unix timestamp of entry creation
     Author      ed25519.PublicKey
-}  
+}
     </code></pre>
 
-    <p>note that each entry may point to multiple previous entires in the graph. entries that point to more than one
-        parent are effectively performing a "merge operation" of log state within the topological ordering.</p>
+        <p>
+            note that each entry may point to multiple previous entires in the
+            graph. entries that point to more than one parent are effectively
+            performing a "merge operation" of log state within the topological
+            ordering.
+        </p>
 
-    <p>ordering is defined by a deterministic topological sort over the graph, with ties broken by alphabetical sorting
-        the entry hashes.</p>
+        <p>
+            ordering is defined by a deterministic topological sort over the
+            graph, with ties broken by alphabetical sorting the entry hashes.
+        </p>
 
-    <img src="hashgraph.png" style="max-width:ch;width:100%">
+        <img src="hashgraph.png" style="max-width: ch; width: 100%" />
 
-    <h3>group design</h3>
+        <h3>group design</h3>
 
-    <p>
-        groups in yuzu are defined by a central, per group "operation" hash graph that is permanent and used for
-        capabilities
-        management, access control, and CRUD operations over channels.
-    </p>
+        <p>
+            groups in yuzu are defined by a central, per group "operation" hash
+            graph that is permanent and used for capabilities management, access
+            control, and CRUD operations over channels.
+        </p>
 
-    <p>the operation graph is initialized by a user with a message as follows:</p>
-    <pre><code class="language-json">
+        <p>
+            the operation graph is initialized by a user with a message as
+            follows:
+        </p>
+        <pre><code class="language-json">
 {
     "type": "OPERATION_CREATE_GROUP",
     "group_metadata": {
@@ -131,17 +207,25 @@ type EntryData struct {
 }
     </code></pre>
 
-    <p>an OPERATION_CREATE_GROUP operation will have no Previous entry defined. the ID (hash) of this entry will also be
-        used as the GroupID from now on, uniquely identifying each group.</p>
+        <p>
+            an OPERATION_CREATE_GROUP operation will have no Previous entry
+            defined. the ID (hash) of this entry will also be used as the
+            GroupID from now on, uniquely identifying each group.
+        </p>
 
-    <p>the group owner may then create new entries in the operation graph to grant or revoke <u>capabilities</u>, create
-        <u>channels</u>, and update metadata.
-    </p>
+        <p>
+            the group owner may then create new entries in the operation graph
+            to grant or revoke <u>capabilities</u>, create <u>channels</u>, and
+            update metadata.
+        </p>
 
-    <h3>capabilities and pseudo-finality</h3>
+        <h3>capabilities and pseudo-finality</h3>
 
-    <p>for example, "inviting" another user to the group can be achieved via the JOIN capability.</p>
-    <pre><code class="language-json">
+        <p>
+            for example, "inviting" another user to the group can be achieved
+            via the JOIN capability.
+        </p>
+        <pre><code class="language-json">
 {
     "type": "OPERATION_GRANT_CAPABILITY",
     "capability_data": {
@@ -154,46 +238,79 @@ type EntryData struct {
 }
     </code></pre>
 
-    <p>note the use of <u>unix timestamps</u> for bounding the use of this operation. this is obviously not a perfect
-        solution
-        given the dynamics of peer to peer systems, as authors could attempt to use a capability that was revoked or
-        expired by manufacturing a new entry with a timestamp and causal dependency set "backwards in time". this is not
-        distinguishable from legitimate but stale messages due to network availability and offline data sync.</p>
+        <p>
+            note the use of <u>unix timestamps</u> for bounding the use of this
+            operation. this is obviously not a perfect solution given the
+            dynamics of peer to peer systems, as authors could attempt to use a
+            capability that was revoked or expired by manufacturing a new entry
+            with a timestamp and causal dependency set "backwards in time". this
+            is not distinguishable from legitimate but stale messages due to
+            network availability and offline data sync.
+        </p>
 
-    <p>to mitigate this, we tweak the availability and consistency expectations specifically for the operation DAG,
-        where nodes define an acceptance boundary for new entires in terms of the claimed timestamp and the node's
-        current clocktime. to allow for historic sync, we also define alternative validity under "depth of attestations"
-        (previous links from other peers).</p>
+        <p>
+            to mitigate this, we tweak the availability and consistency
+            expectations specifically for the operation DAG, where nodes define
+            an acceptance boundary for new entires in terms of the claimed
+            timestamp and the node's current clocktime. to allow for historic
+            sync, we also define alternative validity under "depth of
+            attestations" (previous links from other peers).
+        </p>
 
-    <img src="finality.png" style="max-width:ch;width:100%">
+        <img src="finality.png" style="max-width: ch; width: 100%" />
 
-    <p>attestations of entry validity (that they are non-byzantine, aka received within a timely window) may be
-        explicitly entered into the DAG, but they may also be implicit via subsequent operations treating these
-        operations as a dependency (ancestor of one of their own entries).</p>
+        <p>
+            attestations of entry validity (that they are non-byzantine, aka
+            received within a timely window) may be explicitly entered into the
+            DAG, but they may also be implicit via subsequent operations
+            treating these operations as a dependency (ancestor of one of their
+            own entries).
+        </p>
 
-    <p>while not a perfect solution, I posit that this pseudo-finality strikes a reasonable tradeoff between byzantine
-        protection, offline sync, and no required strong consensus mechanism.</p>
+        <p>
+            while not a perfect solution, I posit that this pseudo-finality
+            strikes a reasonable tradeoff between byzantine protection, offline
+            sync, and no required strong consensus mechanism.
+        </p>
 
-    <p>the following parameters may be made tunable per group or per implementation:</p>
-    <ul>
-        <li>the amount a new entry's timestamp is allowed to deviate from node clock time before it's considered invalid
-            by peers, referred to as <u>skew tolerance</u></li>
-        <li>the number of identities attesting to the validity of a message required for it to be considered valid,
-            referred to as the <u>attestation threshold</u></li>
-        <li>the conditions under which nodes explicitly attest vs depend on implicit attestation</li>
-    </ul>
+        <p>
+            the following parameters may be made tunable per group or per
+            implementation:
+        </p>
+        <ul>
+            <li>
+                the amount a new entry's timestamp is allowed to deviate from
+                node clock time before it's considered invalid by peers,
+                referred to as <u>skew tolerance</u>
+            </li>
+            <li>
+                the number of identities attesting to the validity of a message
+                required for it to be considered valid, referred to as the
+                <u>attestation threshold</u>
+            </li>
+            <li>
+                the conditions under which nodes explicitly attest vs depend on
+                implicit attestation
+            </li>
+        </ul>
 
-    <p>for a flagship implementation, I propose the following:</p>
-    <ul>
-        <li>owner entries require no attestations, they are automatically assumed valid</li>
-        <li>owner always attests explicitly, other peers have a probability to attest based on the number of observed
-            live peers</li>
-        <li>owner attestations carry more weight than non-owner ones</li>
-    </ul>
+        <p>for a flagship implementation, I propose the following:</p>
+        <ul>
+            <li>
+                owner entries require no attestations, they are automatically
+                assumed valid
+            </li>
+            <li>
+                owner always attests explicitly, other peers have a probability
+                to attest based on the number of observed live peers
+            </li>
+            <li>owner attestations carry more weight than non-owner ones</li>
+        </ul>
 
-    <br><br><br><br>
+        <br /><br /><br /><br />
 
-    <script>hljs.highlightAll();</script>
-</body>
-
+        <script>
+            hljs.highlightAll();
+        </script>
+    </body>
 </html>
