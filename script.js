@@ -64,6 +64,7 @@ const FACTS = [
     "ravens would like to expand their vocabulary",
     "ravens hates tomatoes",
     "ravens cannot seem to feel burns in their mouth",
+    "ravens cannot spell restauruant"
 ];
 
 const EPIGRAMS = [
