@@ -1,0 +1,103 @@
+body {
+    font-family: "SF Mono", "IBM Plex Mono", "Fira Mono", monospace;
+    max-width: 80ch;
+    margin: 1rem auto;
+    padding: 0;
+    line-height: 1.25rem;
+    padding: 1ch;
+    font-size: 15px;
+}
+
+a {
+    color: #2590eb;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #000;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: normal;
+    line-height: 1.25rem;
+}
+
+h1 {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #000;
+}
+
+h2 {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #000;
+}
+
+h2::before {
+    content: "▶";
+    padding-right: 8px;
+}
+
+h3 {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #000;
+}
+
+h3::before {
+    content: "▶▶";
+    padding-right: 8px;
+}
+
+li {
+    margin: 0.75rem 0;
+}
+
+.box {
+    border: 1px solid #000;
+    padding: 1rem;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.box::before {
+    content: "▶ " attr(data-label); /* Gets label from data-label attribute */
+    position: absolute;
+    top: -0.7rem;
+    left: 0.5rem;
+    background: #fff;
+    padding-right: 1ch;
+}
+
+.header {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #000;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.meta {
+    font-size: 0.75rem;
+    color: #666;
+    border-top: 1px solid #ccc;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.inline-meta {
+    font-size: 0.75rem;
+    color: #666;
+    padding-left: 1rem;
+}
+
+.small-text {
+    font-size: 0.75rem;
+    color: #666;
+}

@@ -1,404 +1,435 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ravens' site</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="favicon.ico" />
+        <script src="script.js"></script>
     </head>
 
     <body>
-        <div class="header">rvns.moe</div>
+        <div id="grid">
+            <header>
+                🐦‍⬛ <span class="strong">welcome to ravens' site</span> 🐦‍⬛
+            </header>
 
-        <div class="box" data-label="about me">
-            <p>
-                hello, I'm ravens. I'm a "sr staff" software "engineer" for a bigco.
-                I lead a team of ~30 product engineers, and help run an org of ~350.
-            </p>
+            <main>
+                <p>
+                    hello, I'm <span class="success">ravens</span>. I'm a <span class="error">"sr staff" software "engineer"</span> for a bigco.
+                    I lead a team of ~30 product engineers, and help run an org of ~350.
+                </p>
+    
+                <p>I do a lot of other <span class="warning">random stuff</span> on the side.</p>
+    
+                <p>
+                    you can find me here:
+                    <ul>
+                        <li>
+                            <a href="https://twitter.com/_R4V3N5_" target="_blank"
+                                >@_R4V3N5_ on twitter</a
+                            >
+                        </li>
+                        <li>
+                            <a href="https://github.com/ravens2d" target="_blank"
+                                >ravens2d on github</a
+                            >
+                        </li>
+                        <li>
+                            <a href="https://bsky.app/profile/rvns.moe" target="_blank"
+                                >@rvns.moe on bluesky</a
+                            >
+                        </li>
+                    </ul>
+                </p>
+            </main>
 
-            <p>I do a lot of other random stuff on the side.</p>
+            <aside id="projects">
+                here are <span class="success">some projects</span> I'm working on:
+        
+                <ul>
+                    <li>
+                        <a href="https://github.com/ravens2d/kawavm" target="_blank">kawa</a>
+                        - a <span class="strong">fantasy retro console virtual machine</span>, using a stack machine
+                        architecture with 16 bit words, 64k mem, 16k roms, and memory mapped
+                        IO
+                    </li>
+        
+                    <li>
+                        <a href="/posts/yuzu" target="_blank">yuzu</a> - a <span class="strong">peer to peer chat
+                        protocol</span> with permissionless network participation, global
+                        discovery, and pseudo-finality
+                    </li>
+        
+                    <li>
+                        <a href="https://github.com/ravens2d/ivy" target="_blank">ivy</a> -
+                        a <span class="strong">local first, p2p runtime</span> using mDNS+DNS-SD for local network peer
+                        discovery, CBOR for serialization, ed25519 for peer identity, and a
+                        hand rolled diffie-hellman exchange for handshakes/wire encryption
+                    </li>
+        
+                    <li>
+                        <a href="https://github.com/ravens2d/yui" target="_blank">yui</a>
+                        - my <span class="strong">personal claude</span> in my terminal. supports episodic and factual memory.
+                        experimentation ground for other more fringe agentic features.
+                    </li>
+                </ul>
+            </aside>
 
-            <p>
-            you can find me here:
-            <ul>
-                <li>
-                    <a href="https://twitter.com/_R4V3N5_" target="_blank"
-                        >@_R4V3N5_ on twitter</a
-                    >
-                </li>
-                <li>
-                    <a href="https://github.com/ravens2d" target="_blank"
-                        >ravens2d on github</a
-                    >
-                </li>
-                <li>
-                    <a href="https://bsky.app/profile/rvns.moe" target="_blank"
-                        >@rvns.moe on bluesky</a
-                    >
-                </li>
-            </ul>
-            </p>
-        </div>
+            <aside id="blogroll">
+                <div><span class="success">others</span> you should check out, in <span class="error">no particular order</span>:</div>
+                
+                <ul class="split">
+                    <li>
+                        <a href="https://www.elizas.website/" target="_blank">mycoliza</a>
+                    </li>
+                    <li>
+                        <a href="https://near.blog/" target="_blank">nearcyan</a>
+                    </li>
+                    <li>
+                        <a href="https://girl.surgery/" target="_blank">sophia</a>
+                    </li>
+                    <li>
+                        <a href="https://felix-red-panda.com/" target="_blank">felix_red_panda</a>
+                    </li>
+                    <li>
+                        <a href="https://char.lt/" target="_blank">charbun</a>
+                    </li>
+                    <li>
+                        <a href="https://tst.sh/" target="_blank">pingthebird</a>
+                    </li>
+                    <li>
+                        <a href="https://sapphic.moe/" target="_blank">sapphic angels system</a>
+                    </li>
+                    <li>
+                        <a href="https://kennethnym.com/" target="_blank">kennethnym</a>
+                    </li>
+                    <li>
+                        <a href="https://hitorilabs.com/" target="_blank">hitorilabs</a>
+                    </li>
+                    <li><a href="https://esp.ac/" target="_blank">esp</a></li>
+                    <li>
+                        <a href="https://www.catgirl.ing/" target="_blank">rose</a>
+                    </li>
+                    <li><a href="https://qtnx.ai/" target="_blank">qtnx</a></li>
+                    <li><a href="https://vin.gg/" target="_blank">vin</a></li>
+                    <li>
+                        <a href="https://echo4eva.com/" target="_blank">echo4eva</a>
+                    </li>
+                    <li>
+                        <a href="https://felixkunze.xyz/" target="_blank">xilo</a>
+                    </li>
+                    <li>
+                        <a href="https://dcpunks.computer/" target="_blank">dcpunks</a>
+                    </li>
+                    <li>
+                        <a href="https://a11ce.com/" target="_blank">a11ce</a>
+                    </li>
+                </ul>
+            </aside>
 
-        <div class="box" data-label="posts">
-            <p class="small-text">no posts yet..</p>
-        </div>
+            <aside id="queries">
+                random <span class="warning">query</span>: <br> <span class="note">what is the capital of france?</span>
+            </aside>
 
-        <div class="box" data-label="projects">
-            <p>here are some projects I'm working on:</p>
+            <div id="facts">
+                random <span class="error">ravens fact</span>: <br> <span class="note">ravens got lost in the amazon rainforest as a child</span>
+            </div>
 
-            <p>
-                <a href="https://github.com/ravens2d/kawavm" target="_blank">kawa</a>
-                - a fantasy retro console virtual machine, using a stack machine
-                architecture with 16 bit words, 64k mem, 16k roms, and memory mapped
-                IO
-            </p>
+            <div id="epigrams">
+                random <span class="success">epigram</span>: <br> <span class="note">the only way out is through</span>
+            </div>
 
-            <p>
-                <a href="/posts/yuzu" target="_blank">yuzu</a> - a peer to peer chat
-                protocol with permissionless network participation, global
-                discovery, and pseudo-finality
-            </p>
+            <aside id="to-read">
+                <span class="strong">to read</span>:
 
-            <p>
-                <a href="https://github.com/ravens2d/ivy" target="_blank">ivy</a> -
-                a local first, p2p runtime using mDNS+DNS-SD for local network peer
-                discovery, CBOR for serialization, ed25519 for peer identity, and a
-                hand rolled diffie-hellman exchange for handshakes/wire encryption
-            </p>
+                <ul class="truncated">
+                    <li>
+                        <a href="https://arxiv.org/pdf/2504.02495" target="_blank">Inference-Time Scaling for Generalist Reward Modeling</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2504.01990" target="_blank">Advances and Challenges in Foundation Agents: From Brain-Inspired Intelligence to Evolutionary, Collaborative, and Safe Systems</a>
+                    </li>
+                    <li>
+                        <a href="https://catern.com/integration.html" target="_blank">No more DSLs: Implement and deploy a distributed system with a single program</a>
+                    </li>
+                    <li>
+                        <a href="https://wafer.systems/utop/" target="_blank">UI Trees or Pixels? Studying Modality Choices in Android Action-Taking Models</a>
+                    </li>
+                    <li>
+                        <a href="https://wafer.systems/lfhre" target="_blank">Learning from Highly Related Examples</a>
+                    </li>
+    
+                    <li>
+                        <a href="https://arxiv.org/abs/2301.04104" target="_blank">Mastering Diverse Domains through World Models</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/2504.07086" target="_blank">A Sober Look at Progress in Language Model Reasoning: Pitfalls and Paths to Reproducibility</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2504.07091" target="_blank">AssistanceZero: Scalably Solving Assistance Games</a>
+                    </li>
+                    <li>
+                        <a href="https://sigops.org/s/conferences/sosp/2013/papers/p33-david.pdf" target="_blank">Everything You Always Wanted to Know About Synchronization but Were Afraid to Ask</a>
+                    </li>
+                    <li>
+                        <a href="https://blog.ml.cmu.edu/2025/01/08/optimizing-llm-test-time-compute-involves-solving-a-meta-rl-problem/" target="_blank">Optimizing LLM Test-Time Compute Involves Solving a Meta-RL Problem</a>
+                    </li>
+                    <li>
+                        <a href="https://dl.acm.org/doi/pdf/10.1145/3341301.3359656" target="_blank">File Systems Unfit as Distributed Storage Backends: Lessons from 10 Years of Ceph Evolution</a>
+                    </li>
+                </ul>
+            </aside>
 
-            <p>
-                <a href="https://github.com/ravens2d/yui" target="_blank">yui</a>
-                - my personal claude in my terminal. supports episodic and factual memory.
-                experimentation ground for other more fringe agentic features.
-            </p>
-        </div>
+            <main id="reading">
+                <span class="strong">currently reading</span>:
+                <ul class="truncated">
+                    <li>
+                        <a href="https://darioamodei.com/machines-of-loving-grace" target="_blank">Machines of Loving Grace</a>
+                    </li>
+                    <li>
+                        <a href="https://www.corsix.org/content/tt-wh-part5" target="_blank">Tenstorrent Wormhole Series Part 5: Taking apart T tiles</a>
+                    </li>
+                </ul>
 
-        <div class="box" data-label="blogroll">
-            <p>others you should check out, in no particular order:</p>
+                <span class="strong">backburner</span>:
+                <ul class="truncated">
+                    <li>
+                        <a href="https://learnyouahaskell.github.io/chapters.html" target="_blank">Learn You a Haskell for Great Good!</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/hmemcpy/milewski-ctfp-pdf" target="_blank">Category Theory For Programmers</a>
+                    </li>
+                    <li>
+                        <a href="https://docs.google.com/document/d/e/2PACX-1vQD8IlBotGdBxp3BnXkSjk8bNZlPV_0EH9ZA6wHd5dNf-BLSiwXUinvgv8ZoBEnNyTCF-chWO30NRw0/pub" target="_blank">Keeping up with AGI (Google Doc)
+                        </a>
+                    </li>
+                </ul>
+            </main>
+            
+            <aside id="read">
+                <span class="strong">read, want to remember</span>:
+                <ul class="truncated">
+                    <li>
+                        <a href="https://bellard.org/nncp/nncp_v2.1.pdf" target="_blank">NNCP v2: Lossless Data Compression with Transformer</a>
+                    </li>
+                    <li>
+                        <a href="https://bellard.org/nncp/nncp.pdf" target="_blank">Lossless Data Compression with Neural Networks</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2112.00861" target="_blank">A General Language Assistant as a Laboratory for Alignment</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2212.08073" target="_blank">Constitutional AI: Harmlessness from AI Feedback</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2204.05862" target="_blank">Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback</a>
+                    </li>
+    
+                    <li>
+                        <a href="https://ai-2027.com/" target="_blank">AI 2027</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2501.12948" target="_blank">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/2411.18674" target="_blank">Active Data Curation Effectively Distills Large-Scale Multimodal Models</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2405.14333" target="_blank">DeepSeek-Prover: Advancing Theorem Proving in LLMs through Large-Scale Synthetic Data</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2207.00032" target="_blank">DeepSpeed Inference: Enabling Efficient Inference of Transformer Models at Unprecedented Scale</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/1811.06965" target="_blank">GPipe: Easy Scaling with Micro-Batch Pipeline
+                        Parallelism</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2309.06180" target="_blank">Efficient Memory Management for Large Language Model Serving with PagedAttention</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2407.13692" target="_blank">Prover-Verifier Games improve legibility of LLM outputs</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2201.12023" target="_blank">Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning</a>
+                    </li>
+                    <li>
+                        <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview" target="_blank">A (Long) Peek into Reinforcement Learning</a>
+                    </li>
+                    <li>
+                        <a href="https://planetbanatt.net/articles/mla.html" target="_blank">Understanding Multi-Head Latent Attention</a>
+                    </li>
+                    <li>
+                        <a href="https://yugeten.github.io/posts/2025/01/ppogrpo/" target="_blank">A vision researcher's guide to some RL stuff: PPO & GRPO</a>
+                    </li>
+                    <li>
+                        <a href="https://huggingface.co/blog/designing-positional-encoding" target="_blank">You could have designed state of the art positional encoding</a>
+                    </li>
+                    <li>
+                        <a href="https://jax-ml.github.io/scaling-book/" target="_blank">How to Scale Your Model - A Systems View of LLMs on TPUs</a>
+                    </li>
+                    <li>
+                        <a href="https://aman.ai/primers/ai/deepseek-R1/#mixture-of-experts-moe" target="_blank">Mixture of Experts (MoE) - Deepseek-R1 Primer</a>
+                    </li>
+                    <li>
+                        <a href="https://nn.labml.ai/transformers/mha.html" target="_blank">Multi-Headed Attention (MHA)</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2402.03300" target="_blank">DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/2212.13567.pdf" target="_blank">Range-Based Set Reconciliation and Authenticated Set
+                            Representations</a>
+                    </li>
+                    <li>
+                        <a href="https://gsd.di.uminho.pt/members/jop/pdfs/LPR07a.pdf" target="_blank">Epidemic Broadcast Trees</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2312.08365" target="_blank">An Invitation to Deep Reinforcement Learning</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/2006.15704" target="_blank">PyTorch Distributed: Experiences on Accelerating Data Parallel Training</a>
+                    </li>
+                    <li>
+                        <a href="https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-li_mu.pdf" target="_blank">Scaling Distributed Machine Learning
+                        with the Parameter Server</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/1603.01529" target="_blank">Delta State Replicated Data Types</a>
+                    </li>
+                    <li>
+                        <a href="https://www.cs.princeton.edu/~mfreed/docs/coral-iptps03.pdf" target="_blank">Sloppy hashing and self-organizing clusters (Coral
+                            Paper)</a>
+                    </li>
+                    <li>
+                        <a href="https://research.vmware.com/files/attachments/0/0/0/0/0/7/7/podc.pdf" target="_blank">HotStuff: BFT Consensus with Linearity and
+                            Responsiveness</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/cabal-club/cable" target="_blank">Cable Protocol</a>
+                    </li>
+                    <li>
+                        <a href="https://hal.inria.fr/hal-02303490/document" target="_blank">Merkle Search Trees: Efficient State-Based CRDTs in Open
+                            Networks</a>
+                    </li>
+                    <li>
+                        <a href="https://willowprotocol.org/" target="_blank">The Willow Protocol</a>
+                    </li>
+                    <li>
+                        <a href="https://www.databass.dev/" target="_blank">Database Internals: A Deep Dive into How Distributed Data
+                            Systems Work</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/abs/2402.14083" target="_blank">Beyond A*: Better Planning with Transformers via Search
+                            Dynamics Bootstrapping</a>
+                    </li>
+                    <li>
+                        <a href="https://raft.github.io/raft.pdf">In Search of an Understandable Consensus Algorithm (The
+                            RAFT Paper)</a>
+                    </li>
+                    <li>
+                        <a href="https://docs.google.com/document/d/1tBw9A4j62ruI5omIJbMxly-la5w4q_TjyJgJL_jN2fI/edit#heading=h.iyrm5j2gcdoq" target="_blank">Ray v2 Architecture</a>
+                    </li>
+                    <li>
+                        <a href="https://mattweidner.com/2022/02/10/collaborative-data-design.html" target="_blank">Designing Data Structures for Collaborative Apps
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://grugbrain.dev/" target="_blank">The Grug Brained Developer - A layman's guide to thinking
+                            like the self-aware smol brained</a>
+                    </li>
+                    <li>
+                        <a href="https://crdt.tech/implementations" target="_blank">General-purpose CRDT libraries
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://automerge.org/" target="_blank">Automerge Libarary</a>
+                    </li>
+                    <li>
+                        <a href="https://applied-langua.ge/software-and-anarchy.pdf" target="_blank">Software and Anarchy</a>
+                    </li>
+                    <li>
+                        <a href="http://docs.peachcloud.org/introduction.html" target="_blank">Peachcloud docs</a>
+                    </li>
+                    <li>
+                        <a href="https://amaarora.github.io/posts/2020-02-18-annotatedGPT2.html" target="_blank">The Annotated GPT-2</a>
+                    </li>
+                    <li>
+                        <a href="https://habr.com/en/company/ods/blog/708672/" target="_blank">Building a GPT-like Model from Scratch with Detailed Theory
+                            and Code Implementation</a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/2210.11416.pdf" target="_blank">Scaling Instruction-Finetuned Language Models</a>
+                    </li>
+                    <li>
+                        <a href="http://nlp.seas.harvard.edu/annotated-transformer/" target="_blank">The Annotated Transformer</a>
+                    </li>
+                    <li>
+                        <a href="https://blogs.newardassociates.com/blog/2023/you-want-modules-not-microservices.html" target="_blank">You Want Modules, Not Microservices
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://deno.land/x/earthstar@v10.0.0/mod.ts" target="_blank">Earthstar docs</a>
+                    </li>
+                    <li>
+                        <a href="https://martin.kleppmann.com/papers/bft-crdt-papoc22.pdf" target="_blank">Making CRDTs Byzantine Fault Tolerant</a>
+                    </li>
+                    <li>
+                        <a href="https://gitlab.com/cal-coop/netfarm/netfarm" target="_blank">netfarm source code</a>
+                        /
+                        <a href="https://cal-coop.gitlab.io/netfarm/documentation/Introduction.html" target="_blank">Netfarm Introduction</a>
+                    </li>
+                    <li>
+                        <a href="https://p2panda.org/learn" target="_blank">p2panda docs</a>
+                    </li>
+                    <li>
+                        <a href="https://applied-langua.ge/posts/here-is-a-loud-announcement.html" target="_blank">Applied Language announces Applied Language</a>
+                    </li>
+                    <li>
+                        <a href="https://www.hyperhyperspace.org/whitepaper/" target="_blank">Hyperhyperspace whitepaper</a>
+                    </li>
+                    <li>
+                        <a href="https://www.inkandswitch.com/local-first/" target="_blank">Local-first software</a>
+                    </li>
+                    <li>
+                        <a href="https://earthstar-project.org/get-started/how-it-works" target="_blank">How Earthstar Works</a>
+                    </li>
+                    <li>
+                        <a href="https://ssbc.github.io/scuttlebutt-protocol-guide/" target="_blank">Scuttlebutt protocol guide</a>
+                    </li>
+                    <li>
+                        <a href="https://socialhub.activitypub.rocks/pub/guide-for-new-activitypub-implementers" target="_blank">Guide for new activitypub implementers</a>
+                    </li>
+                    <li>
+                        <a href="https://cabal.chat/" target="_blank">cabal protocol</a>
+                    </li>
+                    <li>
+                        <a href="https://www.w3.org/TR/did-core/" target="_blank">DID Spec</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/christianlundkvist/rebooting-the-web-of-trust" target="_blank">Rebooting the Web of Trust</a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/WebOfTrustInfo" target="_blank">Web of Trust</a>
+                    </li>
+                    <li>
+                        <a href="https://orbitdb.org/" target="_blank">OrbitDB Docs</a>
+                    </li>
+                    <li>
+                        <a href="https://gun.eco/" target="_blank">GunDB Docs</a>
+                    </li>
+                    <li>
+                        <a href="https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf" target="_blank">The Kademlia paper</a>
+                    </li>
+                    <li>
+                        <a href="https://hypercore-protocol.org/" target="_blank">Hypercore Protocol</a>
+                    </li>
+                </ul>
+            </aside>
 
-            <ul>
-                <li>
-                    <a href="https://kennethnym.com/" target="_blank">kennethnym</a>
-                </li>
-                <li>
-                    <a href="https://hitorilabs.com/" target="_blank">hitorilabs</a>
-                </li>
-                <li><a href="https://vmfunc.re/" target="_blank">vmfunc</a></li>
-                <li><a href="https://esp.ac/" target="_blank">esp</a></li>
-                <li>
-                    <a href="https://www.catgirl.ing/" target="_blank">rose</a>
-                </li>
-                <li><a href="https://qtnx.ai/" target="_blank">qtnx</a></li>
-                <li>
-                    <a href="https://near.blog/" target="_blank">nearcyan</a>
-                </li>
-                <li><a href="https://vin.gg/" target="_blank">vin</a></li>
-                <li>
-                    <a href="https://echo4eva.com/" target="_blank">echo4eva</a>
-                </li>
-                <li>
-                    <a href="https://felixkunze.xyz/" target="_blank">xilo</a>
-                </li>
-                <li>
-                    <a href="https://dcpunks.computer/" target="_blank">dcpunks</a>
-                </li>
-                <li>
-                    <a href="https://a11ce.com/" target="_blank">a11ce</a>
-                </li>
-            </ul>
-        </div>
-
-        <h1>reading list</h1>
-
-        <div class="box" data-label="to read">
-            <ul>
-                <li>
-                    <a href="https://arxiv.org/pdf/2504.02495" target="_blank">Inference-Time Scaling for Generalist Reward Modeling</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2504.01990" target="_blank">Advances and Challenges in Foundation Agents: From Brain-Inspired Intelligence to Evolutionary, Collaborative, and Safe Systems</a>
-                </li>
-                <li>
-                    <a href="https://catern.com/integration.html" target="_blank">No more DSLs: Implement and deploy a distributed system with a single program</a>
-                </li>
-                <li>
-                    <a href="https://wafer.systems/utop/" target="_blank">UI Trees or Pixels? Studying Modality Choices in Android Action-Taking Models</a>
-                </li>
-                <li>
-                    <a href="https://wafer.systems/lfhre" target="_blank">Learning from Highly Related Examples</a>
-                </li>
-
-                <li>
-                    <a href="https://arxiv.org/abs/2301.04104" target="_blank">Mastering Diverse Domains through World Models</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/pdf/2504.07086" target="_blank">A Sober Look at Progress in Language Model Reasoning: Pitfalls and Paths to Reproducibility</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2504.07091" target="_blank">AssistanceZero: Scalably Solving Assistance Games</a>
-                </li>
-                <li>
-                    <a href="https://sigops.org/s/conferences/sosp/2013/papers/p33-david.pdf" target="_blank">Everything You Always Wanted to Know About Synchronization but Were Afraid to Ask</a>
-                </li>
-                <li>
-                    <a href="https://blog.ml.cmu.edu/2025/01/08/optimizing-llm-test-time-compute-involves-solving-a-meta-rl-problem/" target="_blank">Optimizing LLM Test-Time Compute Involves Solving a Meta-RL Problem</a>
-                </li>
-                <li>
-                    <a href="https://dl.acm.org/doi/pdf/10.1145/3341301.3359656" target="_blank">File Systems Unfit as Distributed Storage Backends: Lessons from 10 Years of Ceph Evolution</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="box" data-label="currently reading">
-            <ul>
-                <li>
-                    <a href="https://darioamodei.com/machines-of-loving-grace" target="_blank">Machines of Loving Grace</a>
-                </li>
-                <li>
-                    <a href="https://www.corsix.org/content/tt-wh-part5" target="_blank">Tenstorrent Wormhole Series Part 5: Taking apart T tiles</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="box" data-label="backburner">
-            <ul>
-                <li>
-                    <a href="https://learnyouahaskell.github.io/chapters.html" target="_blank">Learn You a Haskell for Great Good!</a>
-                </li>
-                <li>
-                    <a href="https://github.com/hmemcpy/milewski-ctfp-pdf" target="_blank">Category Theory For Programmers</a>
-                </li>
-                <li>
-                    <a href="https://docs.google.com/document/d/e/2PACX-1vQD8IlBotGdBxp3BnXkSjk8bNZlPV_0EH9ZA6wHd5dNf-BLSiwXUinvgv8ZoBEnNyTCF-chWO30NRw0/pub" target="_blank">Keeping up with AGI (Google Doc)
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="box" data-label="read, want to remember">
-            <ul>
-                <li>
-                    <a href="https://bellard.org/nncp/nncp_v2.1.pdf" target="_blank">NNCP v2: Lossless Data Compression with Transformer</a>
-                </li>
-                <li>
-                    <a href="https://bellard.org/nncp/nncp.pdf" target="_blank">Lossless Data Compression with Neural Networks</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2112.00861" target="_blank">A General Language Assistant as a Laboratory for Alignment</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2212.08073" target="_blank">Constitutional AI: Harmlessness from AI Feedback</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2204.05862" target="_blank">Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback</a>
-                </li>
-
-                <li>
-                    <a href="https://ai-2027.com/" target="_blank">AI 2027</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2501.12948" target="_blank">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/pdf/2411.18674" target="_blank">Active Data Curation Effectively Distills Large-Scale Multimodal Models</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2405.14333" target="_blank">DeepSeek-Prover: Advancing Theorem Proving in LLMs through Large-Scale Synthetic Data</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2207.00032" target="_blank">DeepSpeed Inference: Enabling Efficient Inference of Transformer Models at Unprecedented Scale</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/pdf/1811.06965" target="_blank">GPipe: Easy Scaling with Micro-Batch Pipeline
-                    Parallelism</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2309.06180" target="_blank">Efficient Memory Management for Large Language Model Serving with PagedAttention</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2407.13692" target="_blank">Prover-Verifier Games improve legibility of LLM outputs</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2201.12023" target="_blank">Alpa: Automating Inter- and Intra-Operator Parallelism for Distributed Deep Learning</a>
-                </li>
-                <li>
-                    <a href="https://lilianweng.github.io/posts/2018-02-19-rl-overview" target="_blank">A (Long) Peek into Reinforcement Learning</a>
-                </li>
-                <li>
-                    <a href="https://planetbanatt.net/articles/mla.html" target="_blank">Understanding Multi-Head Latent Attention</a>
-                </li>
-                <li>
-                    <a href="https://yugeten.github.io/posts/2025/01/ppogrpo/" target="_blank">A vision researcher's guide to some RL stuff: PPO & GRPO</a>
-                </li>
-                <li>
-                    <a href="https://huggingface.co/blog/designing-positional-encoding" target="_blank">You could have designed state of the art positional encoding</a>
-                </li>
-                <li>
-                    <a href="https://jax-ml.github.io/scaling-book/" target="_blank">How to Scale Your Model - A Systems View of LLMs on TPUs</a>
-                </li>
-                <li>
-                    <a href="https://aman.ai/primers/ai/deepseek-R1/#mixture-of-experts-moe" target="_blank">Mixture of Experts (MoE) - Deepseek-R1 Primer</a>
-                </li>
-                <li>
-                    <a href="https://nn.labml.ai/transformers/mha.html" target="_blank">Multi-Headed Attention (MHA)</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2402.03300" target="_blank">DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/pdf/2212.13567.pdf" target="_blank">Range-Based Set Reconciliation and Authenticated Set
-                        Representations</a>
-                </li>
-                <li>
-                    <a href="https://gsd.di.uminho.pt/members/jop/pdfs/LPR07a.pdf" target="_blank">Epidemic Broadcast Trees</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2312.08365" target="_blank">An Invitation to Deep Reinforcement Learning</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/pdf/2006.15704" target="_blank">PyTorch Distributed: Experiences on Accelerating Data Parallel Training</a>
-                </li>
-                <li>
-                    <a href="https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-li_mu.pdf" target="_blank">Scaling Distributed Machine Learning
-                    with the Parameter Server</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/pdf/1603.01529" target="_blank">Delta State Replicated Data Types</a>
-                </li>
-                <li>
-                    <a href="https://www.cs.princeton.edu/~mfreed/docs/coral-iptps03.pdf" target="_blank">Sloppy hashing and self-organizing clusters (Coral
-                        Paper)</a>
-                </li>
-                <li>
-                    <a href="https://research.vmware.com/files/attachments/0/0/0/0/0/7/7/podc.pdf" target="_blank">HotStuff: BFT Consensus with Linearity and
-                        Responsiveness</a>
-                </li>
-                <li>
-                    <a href="https://github.com/cabal-club/cable" target="_blank">Cable Protocol</a>
-                </li>
-                <li>
-                    <a href="https://hal.inria.fr/hal-02303490/document" target="_blank">Merkle Search Trees: Efficient State-Based CRDTs in Open
-                        Networks</a>
-                </li>
-                <li>
-                    <a href="https://willowprotocol.org/" target="_blank">The Willow Protocol</a>
-                </li>
-                <li>
-                    <a href="https://www.databass.dev/" target="_blank">Database Internals: A Deep Dive into How Distributed Data
-                        Systems Work</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/abs/2402.14083" target="_blank">Beyond A*: Better Planning with Transformers via Search
-                        Dynamics Bootstrapping</a>
-                </li>
-                <li>
-                    <a href="https://raft.github.io/raft.pdf">In Search of an Understandable Consensus Algorithm (The
-                        RAFT Paper)</a>
-                </li>
-                <li>
-                    <a href="https://docs.google.com/document/d/1tBw9A4j62ruI5omIJbMxly-la5w4q_TjyJgJL_jN2fI/edit#heading=h.iyrm5j2gcdoq" target="_blank">Ray v2 Architecture</a>
-                </li>
-                <li>
-                    <a href="https://mattweidner.com/2022/02/10/collaborative-data-design.html" target="_blank">Designing Data Structures for Collaborative Apps
-                    </a>
-                </li>
-                <li>
-                    <a href="https://grugbrain.dev/" target="_blank">The Grug Brained Developer - A layman's guide to thinking
-                        like the self-aware smol brained</a>
-                </li>
-                <li>
-                    <a href="https://crdt.tech/implementations" target="_blank">General-purpose CRDT libraries
-                    </a>
-                </li>
-                <li>
-                    <a href="https://automerge.org/" target="_blank">Automerge Libarary</a>
-                </li>
-                <li>
-                    <a href="https://applied-langua.ge/software-and-anarchy.pdf" target="_blank">Software and Anarchy</a>
-                </li>
-                <li>
-                    <a href="http://docs.peachcloud.org/introduction.html" target="_blank">Peachcloud docs</a>
-                </li>
-                <li>
-                    <a href="https://amaarora.github.io/posts/2020-02-18-annotatedGPT2.html" target="_blank">The Annotated GPT-2</a>
-                </li>
-                <li>
-                    <a href="https://habr.com/en/company/ods/blog/708672/" target="_blank">Building a GPT-like Model from Scratch with Detailed Theory
-                        and Code Implementation</a>
-                </li>
-                <li>
-                    <a href="https://arxiv.org/pdf/2210.11416.pdf" target="_blank">Scaling Instruction-Finetuned Language Models</a>
-                </li>
-                <li>
-                    <a href="http://nlp.seas.harvard.edu/annotated-transformer/" target="_blank">The Annotated Transformer</a>
-                </li>
-                <li>
-                    <a href="https://blogs.newardassociates.com/blog/2023/you-want-modules-not-microservices.html" target="_blank">You Want Modules, Not Microservices
-                    </a>
-                </li>
-                <li>
-                    <a href="https://deno.land/x/earthstar@v10.0.0/mod.ts" target="_blank">Earthstar docs</a>
-                </li>
-                <li>
-                    <a href="https://martin.kleppmann.com/papers/bft-crdt-papoc22.pdf" target="_blank">Making CRDTs Byzantine Fault Tolerant</a>
-                </li>
-                <li>
-                    <a href="https://gitlab.com/cal-coop/netfarm/netfarm" target="_blank">netfarm source code</a>
-                    /
-                    <a href="https://cal-coop.gitlab.io/netfarm/documentation/Introduction.html" target="_blank">Netfarm Introduction</a>
-                </li>
-                <li>
-                    <a href="https://p2panda.org/learn" target="_blank">p2panda docs</a>
-                </li>
-                <li>
-                    <a href="https://applied-langua.ge/posts/here-is-a-loud-announcement.html" target="_blank">Applied Language announces Applied Language</a>
-                </li>
-                <li>
-                    <a href="https://www.hyperhyperspace.org/whitepaper/" target="_blank">Hyperhyperspace whitepaper</a>
-                </li>
-                <li>
-                    <a href="https://www.inkandswitch.com/local-first/" target="_blank">Local-first software</a>
-                </li>
-                <li>
-                    <a href="https://earthstar-project.org/get-started/how-it-works" target="_blank">How Earthstar Works</a>
-                </li>
-                <li>
-                    <a href="https://ssbc.github.io/scuttlebutt-protocol-guide/" target="_blank">Scuttlebutt protocol guide</a>
-                </li>
-                <li>
-                    <a href="https://socialhub.activitypub.rocks/pub/guide-for-new-activitypub-implementers" target="_blank">Guide for new activitypub implementers</a>
-                </li>
-                <li>
-                    <a href="https://cabal.chat/" target="_blank">cabal protocol</a>
-                </li>
-                <li>
-                    <a href="https://www.w3.org/TR/did-core/" target="_blank">DID Spec</a>
-                </li>
-                <li>
-                    <a href="https://github.com/christianlundkvist/rebooting-the-web-of-trust" target="_blank">Rebooting the Web of Trust</a>
-                </li>
-                <li>
-                    <a href="https://github.com/WebOfTrustInfo" target="_blank">Web of Trust</a>
-                </li>
-                <li>
-                    <a href="https://orbitdb.org/" target="_blank">OrbitDB Docs</a>
-                </li>
-                <li>
-                    <a href="https://gun.eco/" target="_blank">GunDB Docs</a>
-                </li>
-                <li>
-                    <a href="https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf" target="_blank">The Kademlia paper</a>
-                </li>
-                <li>
-                    <a href="https://hypercore-protocol.org/" target="_blank">Hypercore Protocol</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="meta">
-            UPDATED: 2025-04-13 | THANK YOU FOR YOUR VISIT &lt;3
+            <footer>🖤 <span class="strong">updated</span>: 2025-04-28, thank you for your <span class="success">visit</span> 🖤</footer>
         </div>
     </body>
 </html>

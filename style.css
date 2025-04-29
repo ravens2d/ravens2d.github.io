@@ -1,103 +1,158 @@
 body {
-    font-family: "SF Mono", "IBM Plex Mono", "Fira Mono", monospace;
-    max-width: 80ch;
-    margin: 1rem auto;
-    padding: 0;
-    line-height: 1.25rem;
-    padding: 1ch;
-    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #f8f8f8;
 }
 
-a {
-    color: #2590eb;
+#grid {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "blogroll main projects"
+        "queries facts epigrams"
+        "to-read read reading"
+        "footer footer footer";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 0.5em;
+    margin: 0.5em;
 }
 
-hr {
-    border: none;
-    border-top: 1px solid #000;
+@media (max-width: 1200px) {
+    #grid {
+        grid-template-areas: 
+            "header header"
+            "main main"
+            "blogroll projects"
+            "facts facts"
+            "queries epigrams"
+            "to-read reading"
+            "read read"
+            "footer footer";
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-h1,
-h2,
-h3,
-h4 {
-    font-weight: normal;
-    line-height: 1.25rem;
+@media (max-width: 768px) {
+    #grid {
+        grid-template-areas:
+            "header"
+            "main"
+            "projects"
+            "blogroll"
+            "facts"
+            "queries"
+            "epigrams"
+            "to-read"
+            "reading"
+            "read"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto auto auto auto auto;
+    }
 }
 
-h1 {
-    font-size: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #000;
+#grid > * {
+    background-color: #ffffff;
+    padding: 0.5em;
+    border: 1px solid #d1d1d1;
 }
 
-h2 {
-    font-size: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #000;
+main {
+    grid-area: main;
 }
 
-h2::before {
-    content: "▶";
-    padding-right: 8px;
+header {
+    grid-area: header;
+    text-align: center;
 }
 
-h3 {
-    font-size: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #000;
+#blogroll {
+    grid-area: blogroll;
 }
 
-h3::before {
-    content: "▶▶";
-    padding-right: 8px;
+#main {
+    grid-area: main;
 }
 
-li {
-    margin: 0.75rem 0;
+#projects {
+    grid-area: projects;
 }
 
-.box {
-    border: 1px solid #000;
-    padding: 1rem;
-    margin: 2rem 0;
-    position: relative;
+#facts {
+    grid-area: facts;
+    text-align: center;
 }
 
-.box::before {
-    content: "▶ " attr(data-label); /* Gets label from data-label attribute */
-    position: absolute;
-    top: -0.7rem;
-    left: 0.5rem;
-    background: #fff;
-    padding-right: 1ch;
+#epigrams {
+    grid-area: epigrams;
+    text-align: center;
 }
 
-.header {
-    display: flex;
-    gap: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #000;
-    margin-bottom: 2rem;
+#queries {
+    grid-area: queries;
+    text-align: center;
+}
+
+#to-read {
+    grid-area: to-read;
+}
+
+#read {
+    grid-area: read;
+}
+
+#reading {
+    grid-area: reading;
+}
+
+footer {
+    grid-area: footer;
+    text-align: center;
+}
+
+.show-more {
+    color: #9f9f9f;
+    text-decoration: none;
+}
+
+.success {
+    color: #008000;
     font-weight: bold;
 }
 
-.meta {
-    font-size: 0.75rem;
-    color: #666;
-    border-top: 1px solid #ccc;
-    margin-top: 2rem;
-    padding-top: 1rem;
+.warning {
+    color: #FFA726;
+    font-weight: bold;
+}
+
+.error {
+    color: #EF5350;
+    font-weight: bold;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.note {
+    color: #9f9f9f;
+    font-style: italic;
+}
+
+a {
+    color: #2590EB;
+}
+
+ul {
+    list-style-type: "- ";
     padding-left: 1rem;
 }
 
-.inline-meta {
-    font-size: 0.75rem;
-    color: #666;
-    padding-left: 1rem;
+li::marker {
+    color: #9f9f9f;
 }
 
-.small-text {
-    font-size: 0.75rem;
-    color: #666;
+ul.split {
+    column-count: 2;
 }
