@@ -34,7 +34,23 @@ const FACTS = [
     "one day ravens would like to retire on a farm to solo gamedev",
     "ravens likes to homebrew fruit wine and mead",
     "ravens really loves their friends",
-    "ravens takes extreme pleasure in trying new foods"
+    "ravens takes extreme pleasure in trying new foods",
+    "ravens uses lightmode at work and darkmode at home",
+    "ravens has visited bhutan and met a few lamas",
+    "ravens was once in a beach rock band, they played lead guitar and sang backup",
+    "ravens once evacuated from a tsunami and slept in a church parking lot",
+    "ravens keeps accidently growing potatoes",
+    "ravens used to have lavender colored hair",
+    "ravens has participated in the ludum dare game jam",
+    "ravens once wrote a binary code signing linux kernel module",
+    "ravens once wrote an aspect oriented transpiler for VHDL (yes it was cursed)",
+    "ravens once wrote a multiplayer browser based roguelike",
+    "when ravens was 15, they wrote an entire \"m\"mo in lua/love2d, complete with the worst netcode ever seen",
+    "ravens has previously been known by over 15 pseudonyms",
+    "ravens strives to be cute",
+    "ravens is above average height, for some definition of average",
+    "ravens took an ancient buddhist art history class in college",
+    "ravens knows how to clicker train"
 ];
 
 const EPIGRAMS = [
@@ -94,14 +110,20 @@ const cycleThroughText = (elementId, textArray) => {
     timerSpan.style.color = '#9f9f9f';
     element.parentNode.appendChild(timerSpan);
 
-    let currentIndex = Math.floor(Math.random() * textArray.length);
+    const shuffledArray = [...textArray];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+
+    let currentIndex = 0;
 
     const updateText = () => {
         const nextInterval = Math.floor(Math.random() * 10000) + 10000;
         const startTime = Date.now();
         
-        element.textContent = textArray[currentIndex];
-        currentIndex = (currentIndex + 1) % textArray.length;
+        element.textContent = shuffledArray[currentIndex];
+        currentIndex = (currentIndex + 1) % shuffledArray.length;
 
         const updateTimer = () => {
             const remaining = Math.ceil((startTime + nextInterval - Date.now()) / 1000);
