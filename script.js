@@ -60,6 +60,10 @@ const FACTS = [
     "ravens has never committed a cybercrime. i promise @fbi @cia @nsa",
     "ravens is not a weeb but has seen a significant amount of anime",
     "ravens is silly but respects professionalism",
+    "ravens prefers the YYYY-MM-DD date format",
+    "ravens would like to expand their vocabulary",
+    "ravens hates tomatoes",
+    "ravens cannot seem to feel burns in their mouth",
 ];
 
 const EPIGRAMS = [
@@ -76,6 +80,7 @@ const EPIGRAMS = [
     "solve the right problems",
     "cherish your bugs, study them!",
     "in order to remain unchanged, a system must change",
+    "let go or be dragged",
 ];
 
 const truncateLists = () => {
