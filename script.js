@@ -50,7 +50,16 @@ const FACTS = [
     "ravens strives to be cute",
     "ravens is above average height, for some definition of average",
     "ravens took an ancient buddhist art history class in college",
-    "ravens knows how to clicker train"
+    "ravens knows how to clicker train",
+    "ravens prefers the oxford comma",
+    "ravens is literally normal",
+    "ravens would like to be more authentic, if they can figure out what this means",
+    "ravens loves making roguelikes, but is pretty bad at playing them",
+    "ravens loves MUDs. ravens would love to play a MUD some day",
+    "ravens is horrible at all video games",
+    "ravens has never committed a cybercrime. i promise @fbi @cia @nsa",
+    "ravens is not a weeb but has seen a significant amount of anime",
+    "ravens is silly but respects professionalism",
 ];
 
 const EPIGRAMS = [
