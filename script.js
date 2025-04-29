@@ -12,7 +12,8 @@ const QUERIES = [
     "what % of humanity's knowledge is literally just vibes?",
     "does computing environment affect your thinking?",
     "chat, are we cooked?",
-    "is there a shortcut to better numeracy?"
+    "is there a shortcut to better numeracy?",
+    "how does one avoid the slopocalypse?",
 ];
 
 const FACTS = [
@@ -28,6 +29,12 @@ const FACTS = [
     "ravens grew up in the bay area",
     "ravens like to hang out in vrchat - say hi sometime!",
     "ravens is spiritually a 2000s emo kid",
+    "ravens does not know what they are... yet!",
+    "ravens is a forever DM for TTRPGs",
+    "one day ravens would like to retire on a farm to solo gamedev",
+    "ravens likes to homebrew fruit wine and mead",
+    "ravens really loves their friends",
+    "ravens takes extreme pleasure in trying new foods"
 ];
 
 const EPIGRAMS = [
