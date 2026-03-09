@@ -1,9 +1,22 @@
+function setTheme(themeName) {
+    localStorage.setItem('theme', themeName);
+    document.documentElement.setAttribute('data-theme', themeName);
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+        toggle.textContent = themeName === 'dark' ? 'toggle light mode' : 'toggle dark mode';
+    }
+}
+
+setTheme(localStorage.getItem('theme') || 'light');
+
 const MAX_LIST_ITEMS = 20;
 
 const QUERIES = [
     "what do you care about making better?",
     "is this a useful frame?",
-    "what should you be doing, *right now*?"
+    "what should you be doing, *right now*?",
+    "who are you, really? when all else is discarded",
+    "what is the second most important thing to you?"
 ];
 
 const FACTS = [
@@ -77,7 +90,7 @@ const truncateLists = () => {
 const updateRandomText = (elementId, textArray) => {
     const element = document.querySelector(`#${elementId} .note`);
     if (!element) return;
-    
+
     const randomIndex = Math.floor(Math.random() * textArray.length);
     element.textContent = textArray[randomIndex];
 };
@@ -87,7 +100,7 @@ const cycleThroughText = (elementId, textArray) => {
     if (!element) return;
 
     const timerSpan = document.createElement('span');
-    timerSpan.style.color = '#9f9f9f';
+    timerSpan.style.color = 'var(--note-color)';
     element.parentNode.appendChild(timerSpan);
 
     const shuffledArray = [...textArray];
@@ -101,7 +114,7 @@ const cycleThroughText = (elementId, textArray) => {
     const updateText = () => {
         const nextInterval = Math.floor(Math.random() * 10000) + 10000;
         const startTime = Date.now();
-        
+
         element.textContent = shuffledArray[currentIndex];
         currentIndex = (currentIndex + 1) % shuffledArray.length;
 
@@ -124,5 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
     cycleThroughText('queries', QUERIES);
     cycleThroughText('epigrams', EPIGRAMS);
     cycleThroughText('facts', FACTS);
+
+    document.getElementById('theme-toggle').addEventListener('click', function (e) {
+        e.preventDefault();
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
 });
 

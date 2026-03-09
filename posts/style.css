@@ -1,3 +1,23 @@
+:root {
+    --background-color: #fff;
+    --text-color: #000;
+    --link-color: #2590eb;
+    --border-color: #000;
+    --meta-color: #666;
+    --meta-border: #ccc;
+    --box-background: #fff;
+}
+
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --link-color: #64b5f6;
+    --border-color: #555;
+    --meta-color: #aaa;
+    --meta-border: #444;
+    --box-background: #1e1e1e;
+}
+
 body {
     font-family: "SF Mono", "IBM Plex Mono", "Fira Mono", monospace;
     max-width: 80ch;
@@ -6,15 +26,18 @@ body {
     line-height: 1.25rem;
     padding: 1ch;
     font-size: 15px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
 }
 
 a {
-    color: #2590eb;
+    color: var(--link-color);
 }
 
 hr {
     border: none;
-    border-top: 1px solid #000;
+    border-top: 1px solid var(--border-color);
 }
 
 h1,
@@ -28,13 +51,13 @@ h4 {
 h1 {
     font-size: 1rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--border-color);
 }
 
 h2 {
     font-size: 1rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--border-color);
 }
 
 h2::before {
@@ -45,7 +68,7 @@ h2::before {
 h3 {
     font-size: 1rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--border-color);
 }
 
 h3::before {
@@ -58,18 +81,18 @@ li {
 }
 
 .box {
-    border: 1px solid #000;
+    border: 1px solid var(--border-color);
     padding: 1rem;
     margin: 2rem 0;
     position: relative;
 }
 
 .box::before {
-    content: "▶ " attr(data-label); /* Gets label from data-label attribute */
+    content: "▶ " attr(data-label);
     position: absolute;
     top: -0.7rem;
     left: 0.5rem;
-    background: #fff;
+    background: var(--box-background);
     padding-right: 1ch;
 }
 
@@ -77,15 +100,15 @@ li {
     display: flex;
     gap: 1rem;
     padding: 0.5rem 0;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--border-color);
     margin-bottom: 2rem;
     font-weight: bold;
 }
 
 .meta {
     font-size: 0.75rem;
-    color: #666;
-    border-top: 1px solid #ccc;
+    color: var(--meta-color);
+    border-top: 1px solid var(--meta-border);
     margin-top: 2rem;
     padding-top: 1rem;
     padding-left: 1rem;
@@ -93,11 +116,11 @@ li {
 
 .inline-meta {
     font-size: 0.75rem;
-    color: #666;
+    color: var(--meta-color);
     padding-left: 1rem;
 }
 
 .small-text {
     font-size: 0.75rem;
-    color: #666;
+    color: var(--meta-color);
 }
